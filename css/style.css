@@ -1,0 +1,441 @@
+/* Modern eco-friendly CSS variables and components
+   File: ccs/styles.css
+*/
+
+:root {
+  /* Eco-friendly color palette */
+  --primary: #10b981;
+  --secondary: #059669;
+  --accent: #34d399;
+  --danger: #ef2937;
+  /* corrected small hex typo from provided spec (#f5e0b -> #f5e0b0) */
+  --warning: #f5e0b0;
+  --info: #3b8216;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --bg: #f3f416;
+  --white: #ffffff;
+
+  /* Spacing scale */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 3rem;
+
+  /* Radii */
+  --radius: 0.5rem;
+  --readius-lg: 1rem; /* kept name as requested (typo preserved) */
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-md: 0 4px 8px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 10px 20px rgba(16, 24, 40, 0.12);
+}
+
+/* Base reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  width: 50vw;
+  max-width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, system-ui;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+  color: var(--text);
+  padding: var(--spacing-lg);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Utilities */
+.hidden {
+  display: none !important;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Header */
+header.site-header {
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.site-title {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.site-subtitle {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Calculator form */
+.calculator {
+  background: var(--white);
+  border-radius: var(--readius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-lg);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: calc(var(--spacing-sm) + 0.25rem) var(--spacing-md);
+  border: 1px solid rgba(31, 41, 55, 0.08);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  background: #fff;
+}
+
+/* Match #origin and #destination to #distance style */
+#origin,
+#destination,
+#distance {
+  width: 100%;
+  padding: calc(var(--spacing-sm) + 0.25rem) var(--spacing-md);
+  border: 1px solid rgba(31, 41, 55, 0.08);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  background: #fff;
+}
+#origin:focus,
+#destination:focus,
+#distance:focus {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+}
+
+.helper-text {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 0.35rem;
+}
+
+/* Transport mode grid */
+.transport-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* mobile default (2 cols) */
+  gap: var(--spacing-md);
+}
+
+/* Very small screens: 1 column */
+@media (max-width: 479px) {
+  .transport-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Desktop: 4 columns */
+@media (min-width: 768px) {
+  .transport-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* hide actual radios */
+.transport-grid input[type="radio"].transport-option {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* label as clickable card */
+.transport-grid label.card {
+  border: 1px solid rgba(31, 41, 55, 0.08);
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    border-color 0.12s ease;
+  background: #fff;
+}
+
+.transport-grid label.card .icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.transport-grid label.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* checked state (adjacent sibling) */
+.transport-grid input[type="radio"].transport-option:checked + label.card {
+  border: 2px solid var(--primary);
+  background: rgba(16, 185, 129, 0.06);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Checkbox */
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--spacing-sm);
+}
+.checkbox input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  width: 100%;
+  background: var(--primary);
+  color: var(--white);
+  padding: calc(var(--spacing-sm) + 0.25rem);
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:disabled {
+  background: #e5e7eb;
+  cursor: not-allowed;
+  color: #9ca3af;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(31, 41, 55, 0.12);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Small helpers */
+.small {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+.center {
+  text-align: center;
+}
+
+/* Compatibility with HTML classes used in index.html */
+.header,
+.header__inner {
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+  margin-bottom: var(--spacing-lg);
+}
+
+.header__title {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header__subtitle {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Form helpers */
+.calculator__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+.calculator__helper {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 0.35rem;
+}
+
+/* Transport grid (compat) */
+.calculator__transport-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+@media (max-width: 479px) {
+  .calculator__transport-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 768px) {
+  .calculator__transport-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.calculator__transport-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.calculator__transport-option {
+  border: 1px solid rgba(31, 41, 55, 0.08);
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    border-color 0.12s ease;
+  background: #fff;
+}
+
+.calculator__transport-option:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.calculator__transport-option .calculator__transport-emoji {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+/* checked state: using :has() for labels that contain the input */
+.calculator__transport-option:has(input:checked) {
+  border: 2px solid var(--primary);
+  background: rgba(16, 185, 129, 0.06);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Button compat */
+.calculator__submit {
+  display: inline-block;
+  width: 100%;
+  background: var(--primary);
+  color: var(--white);
+  padding: calc(var(--spacing-sm) + 0.25rem);
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
+}
+.calculator__submit:hover:not(:disabled) {
+  background: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+.calculator__submit:disabled {
+  background: #e5e7eb;
+  cursor: not-allowed;
+  color: #9ca3af;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Footer modern style */
+footer {
+  background: var(--white);
+  padding-top: var(--spacing-md);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 -2px 8px rgba(16, 24, 40, 0.06);
+}
+
+footer .small,
+footer .footer__credits {
+  color: var(--text-light);
+  text-align: center;
+  padding-bottom: var(--spacing-sm);
+}
+
+/* end of css/styles.css */
