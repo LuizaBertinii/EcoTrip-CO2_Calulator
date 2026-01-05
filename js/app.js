@@ -29,8 +29,16 @@
         if (radio.checked) transportMode = radio.value;
       });
       // 2. Validate inputs
-      if (!origin || !destination || !distance || distance <= 0) {
-        alert('Por favor, preencha origem, destino e uma distância válida.');
+      var manualDistance = form['manual-distance'] && form['manual-distance'].checked;
+      if (
+        (!manualDistance && (!origin || !destination || !distance || distance <= 0)) ||
+        (manualDistance && (!distance || distance <= 0))
+      ) {
+        alert('Por favor, preencha os campos obrigatórios: ' +
+          (manualDistance
+            ? 'uma distância válida.'
+            : 'origem, destino e uma distância válida.')
+        );
         return;
       }
       // 3. Get submit button

@@ -98,11 +98,31 @@ var CONFIG = {
         distanceInput.readOnly = false;
         helper.textContent = 'Insira a distância manualmente';
         helper.style.color = '#3b82f6'; // info blue
+        CONFIG.allowManualDistanceEntry(distanceInput, helper);
       } else {
         updateDistance();
       }
     });
   }
+    ,
+
+    /**
+     * Allows manual distance entry regardless of origin/destination values
+     * @param {HTMLInputElement} distanceInput
+     * @param {HTMLElement} helper
+     */
+    allowManualDistanceEntry: function(distanceInput, helper) {
+      // Remove required attribute from origin/destination if present
+      var originInput = document.getElementById('origin');
+      var destInput = document.getElementById('destination');
+      if (originInput) originInput.required = false;
+      if (destInput) destInput.required = false;
+      if (distanceInput) distanceInput.readOnly = false;
+      if (helper) {
+        helper.textContent = 'Insira a distância manualmente';
+        helper.style.color = '#3b82f6';
+      }
+    }
 };
 
 // Usage example:

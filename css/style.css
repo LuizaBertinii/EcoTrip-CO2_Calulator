@@ -740,15 +740,11 @@ select:focus {
 
 /* Footer modern style */
 footer {
-  background: var(--white);
   padding-top: var(--spacing-md);
-  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
-  z-index: 100;
-  box-shadow: 0 -2px 8px rgba(16, 24, 40, 0.06);
 }
 
 footer .small,
