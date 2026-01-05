@@ -139,7 +139,7 @@ var UI = {
     var html = '';
     html += `<div class="carbon__grid">
       <div class="carbon__card carbon__card--credits">
-        <span class="carbon__label">Créditos necessários</span>
+        <span class="carbon__label">Créditos Necessários</span>
         <span class="carbon__value">${UI.formatNumber(creditsData.credits, 4)}</span>
         <span class="carbon__helper">1 crédito = 1000 kg CO₂</span>
       </div>

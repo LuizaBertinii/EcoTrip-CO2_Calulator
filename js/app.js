@@ -51,16 +51,17 @@
         try {
           // --- CALCULATION & RENDERING ---
           // Calculate emission for selected mode
-          var emission = window.CALCULATOR ? CALCULATOR.calculateEmissions(distance, transportMode) : 0;
+          var emission = window.Calculator ? Calculator.calculateEmissions(distance, transportMode) : 0;
           // Calculate car emission as baseline
-          var carEmission = window.CALCULATOR ? CALCULATOR.calculateEmissions(distance, 'car') : 0;
+          var carEmission = window.Calculator ? Calculator.calculateEmissions(distance, 'car') : 0;
           // Calculate savings compared to car
-          var savings = window.CALCULATOR ? CALCULATOR.calculateSavings(emission, carEmission) : null;
+          var savings = window.Calculator ? Calculator.calculateSavings(emission, carEmission) : null;
           // Calculate all modes for comparison
-          var modesArray = window.CALCULATOR ? CALCULATOR.calculateAllModes(distance) : [];
+          console.log(window.Calculator);
+          var modesArray = window.Calculator ? Calculator.calculateAllModes(distance) : [];
           // Calculate carbon credits and price estimate
-          var credits = window.CALCULATOR ? CALCULATOR.calculateCarbonCredits(emission) : 0;
-          var price = window.CALCULATOR ? CALCULATOR.estimateCreditPrice(credits) : { min: 0, max: 0, average: 0 };
+          var credits = window.Calculator ? Calculator.calculateCarbonCredits(emission) : 0;
+          var price = window.Calculator ? Calculator.estimateCreditPrice(credits) : { min: 0, max: 0, average: 0 };
           // Build data objects for rendering
           var resultData = {
             origin: origin,
@@ -80,6 +81,7 @@
             var comparisonContent = document.getElementById('comparison-content');
             var carbonCreditsContent = document.getElementById('carbon-credits-content');
             if (resultsContent) resultsContent.innerHTML = UI.renderResult(resultData);
+            console.log('Modes Array for Comparison:', modesArray);
             if (comparisonContent) comparisonContent.innerHTML = UI.renderComparison(modesArray, transportMode);
             if (carbonCreditsContent) carbonCreditsContent.innerHTML = UI.renderCarbonCredits(creditsData);
             // Show all result sections
