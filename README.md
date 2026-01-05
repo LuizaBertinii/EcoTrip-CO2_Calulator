@@ -48,4 +48,3 @@ The **CO₂ Emission Calculator** is a web tool that allows you to calculate and
 ---
 
 Desenvolvido por Bertini
-# EcoTrip-CO2_Calulator
