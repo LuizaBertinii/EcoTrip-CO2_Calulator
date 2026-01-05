@@ -65,7 +65,6 @@
           // Calculate savings compared to car
           var savings = window.Calculator ? Calculator.calculateSavings(emission, carEmission) : null;
           // Calculate all modes for comparison
-          console.log(window.Calculator);
           var modesArray = window.Calculator ? Calculator.calculateAllModes(distance) : [];
           // Calculate carbon credits and price estimate
           var credits = window.Calculator ? Calculator.calculateCarbonCredits(emission) : 0;
@@ -89,7 +88,6 @@
             var comparisonContent = document.getElementById('comparison-content');
             var carbonCreditsContent = document.getElementById('carbon-credits-content');
             if (resultsContent) resultsContent.innerHTML = UI.renderResult(resultData);
-            console.log('Modes Array for Comparison:', modesArray);
             if (comparisonContent) comparisonContent.innerHTML = UI.renderComparison(modesArray, transportMode);
             if (carbonCreditsContent) carbonCreditsContent.innerHTML = UI.renderCarbonCredits(creditsData);
             // Show all result sections

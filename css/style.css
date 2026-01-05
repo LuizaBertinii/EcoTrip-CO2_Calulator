@@ -1,5 +1,17 @@
+@media (max-width: 767px) {
+  .calculator,
+  .calculator-form,
+  .results,
+  .comparison,
+  .carbon-credits,
+  .results__card,
+  .comparison__item,
+  .carbon-credits__card {
+    width: 100%;
+  }
+}
 /* Modern eco-friendly CSS variables and components
-   File: ccs/styles.css
+   File: css/styles.css
 */
 
 :root {
@@ -42,7 +54,6 @@
 
 body {
   min-height: 100vh;
-  width: 50vw;
   max-width: 100vw;
   margin-left: auto;
   margin-right: auto;
@@ -85,6 +96,9 @@ header.site-header {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .site-title {
@@ -106,6 +120,9 @@ header.site-header {
   border-radius: var(--readius-lg);
   box-shadow: var(--shadow-lg);
   padding: var(--spacing-lg);
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-group {
@@ -430,6 +447,9 @@ select:focus {
   padding: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
   animation: fadeIn 0.5s ease-out;
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .comparison {
